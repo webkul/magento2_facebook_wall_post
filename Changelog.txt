@@ -1,0 +1,25 @@
+Legend
+
++ Features
+- Bugs
+
+-------------------------------- Version 3.0.0 --------------------------------------
+  + Updated according to magento 2.3.x
+
+-------------------------------- Version 2.0.2 --------------------------------------
+	+ Fully compatible with magento version 2.2.*
+
+-------------------------------- Version 2.0.1 --------------------------------------
+	+ Fully compatible with magento version 2.1.*
+
+-------------------------------- Version 2.0.0 --------------------------------------
+	+ Manage height and width from admin panel.
+	+ Post Selection.
+	+ Show/Hide Comments.
+	+ Show/Hide Images in the post.
+	+ Grab the feeds of your group page too.
+	+ Facebook Likebox Included.
+	+ Show/Hide Guest Entries.
+	+ Graph API usage.
+	+ Fast Loading and Sleek.
+	+ No Need To Fill Access Token System Generates Automatically

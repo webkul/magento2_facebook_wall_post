@@ -1,0 +1,48 @@
+<?xml version="1.0"?>
+<!-- 
+/**
+* Webkul Software
+*
+* @category  Webkul
+* @package   Webkul_FacebookWallPost
+* @author    Webkul
+* @copyright Copyright (c) Webkul Software Private Limited (https://webkul.com)
+* @license   https://store.webkul.com/license.html
+*/
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
+    <default>
+        <facebookwallpost>
+            <parameter>
+               <facebookid><![CDATA[webkul]]></facebookid> 
+                <pageurl><![CDATA[http://www.facebook.com]]></pageurl> 
+                <groupurl><![CDATA[http://www.facebook.com]]></groupurl> 
+                <fblike><![CDATA[1]]></fblike> 
+                <fblikebox><![CDATA[1]]></fblikebox> 
+                <show_faces><![CDATA[1]]></show_faces> 
+                <headertext><![CDATA[Find us on Facebook]]></headertext> 
+                <upperheader><![CDATA[1]]></upperheader> 
+                <facebooklogo><![CDATA[1]]></facebooklogo> 
+                <groupurlOpt><![CDATA[1]]></groupurlOpt> 
+                <pageurlOpt><![CDATA[0]]></pageurlOpt> 
+                <wall_backgroung_color><![CDATA[white]]></wall_backgroung_color> 
+                <wall_data_color><![CDATA[blue]]></wall_data_color> 
+                <wall_comment_bgcolor><![CDATA[white]]></wall_comment_bgcolor> 
+                <wall_comment_color><![CDATA[white]]></wall_comment_color> 
+                <showavatar><![CDATA[1]]></showavatar> 
+                <showdate><![CDATA[1]]></showdate> 
+                <guestentries><![CDATA[1]]></guestentries> 
+                <comments><![CDATA[1]]></comments> 
+                <mediaimg><![CDATA[1]]></mediaimg> 
+                <numcomments><![CDATA[3]]></numcomments> 
+                <width><![CDATA[250]]></width> 
+                <height><![CDATA[200]]></height> 
+                <showMoreOption><![CDATA[1]]></showMoreOption> 
+                <seemore><![CDATA[..More]]></seemore> 
+                <seeless><![CDATA[..Less]]></seeless> 
+                <limit><![CDATA[50]]></limit> 
+                <speed><![CDATA[250]]></speed>
+            </parameter>
+        </facebookwallpost>
+    </default>
+</config>

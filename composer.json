@@ -1,0 +1,20 @@
+{
+    "name": "webkul/magento2_facebook_wall_post",
+    "description": "Magento 2 Magento Facebook Wall Post",
+    "require": {
+        "magento/project-community-edition": "2.3.*"
+    },
+    "type": "magento2-module",
+    "version": "3.0.0",
+    "license": [
+        "proprietary"
+    ],
+    "autoload": {
+        "files": [
+            "registration.php"
+        ],
+        "psr-4": {
+            "Webkul\\FacebookWallPost\\": ""
+        }
+    }
+}

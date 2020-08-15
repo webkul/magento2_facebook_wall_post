@@ -1,0 +1,224 @@
+<?xml version="1.0"?>
+<!-- 
+/**
+* Webkul Software
+*
+* @category  Webkul
+* @package   Webkul_FacebookWallPost
+* @author    Webkul
+* @copyright Copyright (c) Webkul Software Private Limited (https://webkul.com)
+* @license   https://store.webkul.com/license.html
+*/
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <tab id="webkul" translate="label" sortOrder="10">
+            <label>Webkul</label>
+        </tab>
+        <section id="facebookwallpost" translate="label" type="text" sortOrder="300" showInDefault="1" showInWebsite="1" showInStore="1">
+            <label>Facebook Wall Post</label>
+            <!-- Assign section to tab -->
+            <tab>webkul</tab>
+            <resource>Webkul_FacebookWallPost::config_facebookwallpost</resource>
+            <!-- create group for fields in section -->
+           <group id="parameter" translate="label" type="text" sortOrder="99" showInDefault="1" showInWebsite="1" showInStore="1">
+
+                <label>Facebook Wall Post Parameters</label>
+                <field id="facebookid" translate="label comment" sortOrder="100" type="text" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Facebook Id</label>
+                    <validate>required-entry</validate>
+                    <comment>Put here Your Facebook Id. eg. webkul</comment>
+                </field>
+
+                <field id="appid" translate="label comment" sortOrder="101"  type='obscure' showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>App Id</label>
+                    <backend_model>Magento\Config\Model\Config\Backend\Encrypted</backend_model>
+                    <comment>Put here Secret Key eg. 1744601462439008</comment>
+                </field>
+
+                <field id="secretkey" translate="label comment" sortOrder="102"  type='obscure' showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Secret Key</label>
+                    <backend_model>Magento\Config\Model\Config\Backend\Encrypted</backend_model>
+                    <comment>Put here Secret Key eg. 684ea8ae6bd0f65b0a2d36c8347eefe2 </comment>
+                </field> 
+                
+                <field id="testaccountaccesstoken" translate="label comment" sortOrder="102" type="obscure" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Test Account Access Token</label>
+                    <backend_model>Magento\Config\Model\Config\Backend\Encrypted</backend_model>
+                    <comment>Put here Test Account Access Token eg. 684ea8ae6bd0f65b0a2d36c8347eefe2 </comment>
+                </field>
+
+                <field id="showinwindow" translate="label" sortOrder="103" type="select" showInDefault="1" showInWebsite="1" showInStore="1">
+                     <label>Show in Window</label>
+                     <source_model>Webkul\FacebookWallPost\Model\System\Config\Source\Status</source_model>
+                </field>
+
+
+                <field id="pageurlOpt" translate="label comment" sortOrder="104" type="select" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Show Page URL</label> 
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <comment>Set Yes/No </comment>                          
+                </field>
+
+                <field id="pageurl" translate="label comment" sortOrder="105" type="text" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <depends>
+                        <field id="pageurlOpt">1</field>
+                    </depends>
+                    <label>Page URL</label>
+                    <comment>Eg. http://www.facebook.com  </comment>                            
+                </field>
+                
+                <field id="groupurlOpt" translate="label comment" sortOrder="106" type="select" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Show Group URL</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <comment>Set Yes/No </comment>                          
+                </field>
+
+                <field id="groupurl" translate="label comment" sortOrder="107" type="text" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <depends>
+                        <field id="groupurlOpt">1</field>
+                    </depends>
+                    <label>Group URL</label>
+                    <comment>Eg. http://www.facebook.com </comment>                         
+                </field>
+
+                <field id="fblike" translate="label comment" sortOrder="108" type="select" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Show Facebook Like</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <comment>Set Yes/No </comment>                          
+                </field>
+
+                <field id="fblikebox" translate="label comment" sortOrder="109" type="select" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Show Facebook Like Box</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <comment>Set Yes/No </comment>                          
+                </field>
+
+                <field id="show_faces" translate="label comment" sortOrder="110" type="select" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Show Faces</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <comment>Set Yes/No </comment>                          
+                </field>
+
+                <field id="headertext" translate="label comment" sortOrder="111" type="text" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Enter Header Text</label>                         
+                    <comment>Show Header Test eg. Find us on Facebook </comment>
+                </field>
+
+                <field id="upperheader" translate="label comment" sortOrder="112" type="select" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Upper Header Text</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <comment>Set Yes/No </comment>                          
+                </field>
+
+                <field id="facebooklogo" translate="label comment" sortOrder="113" type="select" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Show Facebook Logo</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <comment>Set Yes/No </comment>                          
+                </field>
+
+
+
+                <field id="wall_backgroung_color" translate="label comment"  sortOrder="115" type="text" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Wall Background Color</label>
+                    <frontend_model>Webkul\FacebookWallPost\Block\ColorPicker</frontend_model>                         
+                </field>
+
+                <field id="wall_data_color" translate="label comment"  sortOrder="116" type="text" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Wall Data Color</label>
+                    <frontend_model>Webkul\FacebookWallPost\Block\ColorPicker</frontend_model>
+                                            
+                </field>
+
+                <field id="wall_comment_bgcolor" translate="label comment"  sortOrder="117" type="text" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Wall Comment Background Color</label>
+                    <frontend_model>Webkul\FacebookWallPost\Block\ColorPicker</frontend_model>
+                                     
+                </field>
+
+                <field id="wall_comment_color" translate="label comment" sortOrder="118" type="text" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Wall Comment Color</label>
+                    <frontend_model>Webkul\FacebookWallPost\Block\ColorPicker</frontend_model>
+                                      
+                </field>
+
+                <field id="showavatar" translate="label comment"  sortOrder="119" type="select" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Show Profile Pic</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <comment>Set Yes/No </comment>                          
+                </field>
+
+                <field id="showdate" translate="label comment" sortOrder="120" type="select" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Show Date</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <comment>Set Yes/No </comment>                          
+                </field>
+
+                <field id="guestentries" translate="label comment"  sortOrder="121" type="select" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Show guest entries</label>  
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <comment>Set Yes/No to Show guest entries</comment>                         
+                </field>
+
+                <field id="comments" translate="label comment"  sortOrder="122" type="select" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Show comments</label>    
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>                
+                    <comment>Set Yes/No To show Comments</comment>
+                </field>
+
+                <field id="mediaimg" translate="label comment" sortOrder="123" type="select" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Show media image</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <comment>Set Yes/No To Show media image</comment>                           
+                </field>
+
+                <field id="numcomments" translate="label comment" sortOrder="124" type="text" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Number of Feeds to Display</label>
+                    <validate>validate-number</validate>                  
+                    <comment>Show number of comments eg. 3 </comment>               
+                </field>
+
+                <field id="width" translate="label comment" sortOrder="125" type="text" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Width</label>         
+                    <validate>required-entry validate-number</validate>
+                    <comment>Set here width: Eg. 250.</comment>             
+                </field>
+
+                <field id="height" translate="label comment" sortOrder="126" type="text" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Height</label>
+                    <validate>required-entry validate-number</validate>
+                    <comment>Set here Height: Eg. 200.</comment>                
+                </field>
+
+                <field id="showMoreOption" translate="label comment" sortOrder="127" type="select" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Theme</label> 
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>                           
+                    <comment>Eg.: Selected 'NO' no further requirement to fill upcoming option's </comment>         
+                </field>
+
+                <field id="seemore" translate="label comment" sortOrder="128" type="text" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Content See More Text</label>
+                    <comment>Eg. ..More/..See More/..Content+</comment>             
+                </field>
+
+                <field id="seeless" translate="label comment" sortOrder="129" type="text" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Content See Less Text</label>
+                    <comment>Eg. ..Less/..See Less/..Content-</comment>
+                </field>
+
+                <field id="limit" translate="label comment" sortOrder="130" type="text" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Limit Of Characters You Want To Display</label>
+                    <validate>required-entry validate-number</validate>
+                    <comment>Eg. 50,150,250</comment>               
+                </field>
+                
+                <field id="speed" translate="label comment" sortOrder="131" type="text" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Delay Need To Open See More</label>
+                    <validate>required-entry validate-number</validate>
+                    <comment>Eg. 500,1500,2500</comment>                
+                </field>
+
+            </group>
+        </section>
+    </system>
+</config>

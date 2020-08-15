@@ -1,0 +1,225 @@
+<!-- 
+/**
+* Webkul Software
+*
+* @category  Webkul
+* @package   Webkul_FacebookWallPost
+* @author    Webkul
+* @copyright Copyright (c) Webkul Software Private Limited (https://webkul.com)
+* @license   https://store.webkul.com/license.html
+*/
+-->
+<!--Depricated Code-->
+
+<?php
+$wkapiid = $block->getAppId();
+$wkappsecret = $block->getSecretKey();
+$currentUrl = $block->getUrl();
+$isSecure = strpos($currentUrl, "https");
+$accessToken = $wkapiid."|".$wkappsecret;
+if ($block->getTestAccountAccessToken() != '') {
+    $accessToken = $block->getTestAccountAccessToken();
+}
+$data = $block->getAccessToken();
+if ($data && is_object($data) && isset($data->error)) {
+    if ($data->error->code==190) {
+        $errormsg = "<h4 style='color:red;padding:10px;'>".
+        __('Error validating access token, Please Give right Accesstoken for that APPS')."</h4>";
+    } elseif ($data->error->code==101) {
+        $errormsg = "<h4 style='color:red;padding:10px;'>".
+        __('Error validating application, Please Give right APP ID for that APPS')."</h4>";
+    } elseif ($data->error->code==1) {
+        $errormsg = "<h4 style='color:red;padding:10px;'>".
+        __('Error validating client secret key, Please Give right Secret Key for that APPS')."</h4>";
+    } elseif ($data->error->code!="") {
+        $errormsg = "<h4 style='color:red;padding:10px;'>".
+        __('Something Went Wrong with the configuration of facebook wall')."</h4>";
+    }
+    if ($errormsg) {   ?>
+         <span><?= /* @noEscape */   $errormsg ?></span>
+        <?php
+    }
+} else {
+    $mediaimg = $block->getMediaImg();
+    $addwidth = $block->getWidth() + 20;
+    $comments = $block->getComments();
+    $guestentries = $block->getGuestEntries();
+    if ($comments=="1") {
+        $check="true";
+    }
+    if ($comments=="0") {
+        $check="false";
+    }
+    if ($guestentries=="1") {
+        $flag="true";
+    }
+    if ($guestentries=="0") {
+        $flag="false";
+    }
+    ?>  
+    <link rel="stylesheet" 
+        href="<?= /* @noEscape */ $block->getViewFileUrl("Webkul_FacebookWallPost/css/jquery.webkul.fb.wall.css")?>"
+    />
+    <link rel="stylesheet" 
+        href="<?= /* @noEscape */ $block->getViewFileUrl("Webkul_FacebookWallPost/css/jquery.jscrollpane.css")?>"
+    />  
+    
+    <style type="text/css">
+        #fb-ticker {
+            width:<?= /* @noEscape */   $addwidth."px"; ?>
+        }
+        .fb-wall {      
+            width:<?= /* @noEscape */   $block->getWidth() ?>px;
+            height:<?= /* @noEscape */   $block->getHeight()?>px;      
+            background-color:<?= /* @noEscape */   $block->getWallBackgroungColor() ?>;        
+        }
+        .fb-wall-message {
+            color:<?= /* @noEscape */   $block->getWallDataColor() ?>
+        }       
+        .fb-wall-comment {
+            background-color:<?= /* @noEscape */   $block->getWallCommentBgColor() ?>;
+            color:<?= /* @noEscape */   $block->getWallCommentColor() ?>;  
+        }
+    <?php   if ($mediaimg == "0") {   ?>
+            .fb-wall-media-link{
+                display:none;
+            }
+    <?php   } else {      ?>
+            .fb-wall-media-link{
+                display:inline-block;
+            }
+<?php   }   ?>  
+    <?php   if ($block->getShowAvatar()) {   ?>
+            .fb-wall-data{
+                margin-left:60px;
+            }
+    <?php   } else {      ?>
+            .fb-wall-data{
+                padding:5px;
+            }
+<?php   }   ?>  
+    </style>
+    <?php
+    // options to initialize plugins
+        $options = json_encode([
+                        'id'=>$block->getFacebookId(),
+                        'accessToken'=>$accessToken,
+                        'showGuestEntries'=>$block->getGuestEntries(),
+                        'showComments'=> $check,
+                        'max'=>$block->getNumComments(),
+                        'groupurlOpt'=>$block->getGroupUrlOpt(),
+                        'pageurlOpt'=>$block->getPageUrlOpt(),
+                        'groupurl'=>$block->getGroupUrl(),
+                        'pageurl'=>$block->getPageUrl(),
+                        'showdate'=>$block->getShowDate(),
+                        'timeConversion'=>24,
+                        'showavatar'=>$block->getShowAvatar(),
+                        'show_more_option'=>$block->getShowMoreOption(),
+                        'char_len'=>$block->getCharLen(),
+                        'show_in_window'=>$block->getShowinWindow(),
+                        'see_more'=>$block->getSeeMore(),
+                        'see_less'=>$block->getSeeLess()
+                    ]);
+    ?>
+    <!-- plugin intialization in magento way  -->
+    <script type="text/x-magento-init">
+        {
+            "#live-demo":{
+                "webkulfbwall":{
+                    "fbWall":<?= /* @noEscape */   $options ?>
+                }
+            }
+        }
+    </script>
+
+
+    <script>
+        require([
+          "jquery"
+     ],function($){     
+        $('body').on('click','.wkseemore',function(){
+            var name = $(this).attr('data-name');
+            var id = $(this).attr('data-id');
+            name ='#'+name+id;                                  
+            $("span"+name).toggle(<?= /* @noEscape */   $block->getCharSpeed(); ?>);               
+            var blockval = $(this).text();                      
+            if(blockval != "<?= /* @noEscape */   $block->getSeeLess() ?>"){
+                $(this).text("<?= /* @noEscape */   $block->getSeeLess(); ?>");
+                $("span"+name).css("display","inline"); 
+            }else{
+                $(this).text("<?= /* @noEscape */   $block->getSeeMore(); ?>");    
+                $("span"+name).css("display","none");
+            }               
+        });
+    });
+    </script>
+    <div id = 'wk_fb_wpcontainer'>
+        <div id="fb-ticker">
+            <?php
+            if ($block->getUpperHeader() == 1) {?>
+                <div id="top-bar">
+                    <h2 class="tut">
+                        <a href="<?= /* @noEscape */   $block->getHeaderTextLink();?>" 
+                            target="_blank"><?= /* @noEscape */   $block->getHeaderText();?></a>
+                    </h2>
+                </div> <?php
+            }
+            if ($block->getFbLikeBox()==1) {?>
+                <div id="fb-root"></div>
+                <script type="text/javascript">
+                    (function(d, s, id) {
+                        var js, fjs = d.getElementsByTagName(s)[0];
+                        if (d.getElementById(id)) return;
+                        js = d.createElement(s); js.id = id;
+                        js.src = "//connect.facebook.net/en_US/all.js#xfbml=1";
+                        fjs.parentNode.insertBefore(js, fjs);
+                    }(document, "script", "facebook-jssdk"));
+                </script>
+                <?php if ($isSecure === 0):?>   
+                    <div class="fb-like-box" 
+                        data-href="https://www.facebook.com/<?= /* @noEscape */  $block->getFacebookId();?>" 
+                        data-width="<?= /* @noEscape */   $block->getWidth();?>px" 
+                        data-height="180" data-show-faces="true" 
+                        data-stream="false" data-header="false"
+                    >
+                    </div>
+                <?php else: ?>
+                    <div class="fb-like-box" 
+                        data-href="http://www.facebook.com/<?= /* @noEscape */   $block->getFacebookId();?>" 
+                        data-width="<?= /* @noEscape */   $block->getWidth();?>px" data-height="180" 
+                        data-show-faces="true" data-stream="false" data-header="false"
+                    >
+                    </div>  
+                <?php endif; ?> 
+                <?php
+            }
+            if ($block->getFbLike() == 1) {  ?>
+                <div id="like">
+                    <div class="facebooklike">
+                    <?php if ($isSecure === 0):?>   
+                        <iframe 
+                            src="https://www.facebook.com/plugins/like.php?href=https://www.facebook.com/
+                            <?= /* @noEscape */ $block->getFacebookId();?>" 
+                            scrolling="no" 
+                            frameborder="0" 
+                            style="border:none;overflow:hidden;width:<?= /* @noEscape */ $addwidth;?>px; height:60px;"
+                        >
+                        </iframe>
+                    <?php else: ?>  
+                        <iframe 
+                            src="http://www.facebook.com/plugins/like.php?href=http://www.facebook.com/
+                            <?= /* @noEscape */ $block->getFacebookId();?>" 
+                            scrolling="no" 
+                            frameborder="0" 
+                            style="border:none;overflow:hidden;width:<?= /* @noEscape */ $addwidth;?>px; height:60px;"
+                        >
+                        </iframe>
+                    <?php endif; ?> 
+                    </div>
+                </div>
+                <?php
+            }   ?>
+                <div id="live-demo" class="scroll-pane"></div>
+        </div>
+    </div>  
+<?php   }
