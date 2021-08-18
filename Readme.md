@@ -29,4 +29,4 @@ now module is properly installed
 
 # User Guide --
 
-For Magento2 FacebookWallPost module's working process follow user guide - http://webkul.com/blog/facebook-wall-post-magento2
+For Magento2 FacebookWallPost module's working process follow user guide - http://webkul.com/blog/facebook-wall-post-magento2 also check other magento 2 modules https://store.webkul.com/Magento-2.html
