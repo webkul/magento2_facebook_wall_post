@@ -27,6 +27,6 @@ php bin/magento setup:static-content:deploy
 
 now module is properly installed
 
-# User Guide #
+# User Guide --
 
 For Magento2 FacebookWallPost module's working process follow user guide - http://webkul.com/blog/facebook-wall-post-magento2
